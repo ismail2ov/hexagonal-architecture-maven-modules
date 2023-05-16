@@ -12,4 +12,12 @@
   <groupId>org.paradigmadigital.ecommerce</groupId>
   <artifactId>ecommerce-application</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.paradigmadigital.ecommerce</groupId>
+      <artifactId>ecommerce-domain</artifactId>
+    </dependency>
+  </dependencies>
+
+
 </project>

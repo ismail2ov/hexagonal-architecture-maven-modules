@@ -11,5 +11,12 @@
 
   <groupId>org.paradigmadigital.ecommerce</groupId>
   <artifactId>ecommerce-api</artifactId>
+  <dependencies>
+    <dependency>
+      <groupId>org.paradigmadigital.ecommerce</groupId>
+      <artifactId>ecommerce-application</artifactId>
+    </dependency>
+  </dependencies>
+
 
 </project>
