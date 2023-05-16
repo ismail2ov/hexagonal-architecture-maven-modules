@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto:validate
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: ecommerce-user
+    password: ecommerce-password
