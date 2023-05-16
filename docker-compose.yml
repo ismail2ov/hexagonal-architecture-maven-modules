@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+
+  db:
+    container_name: postgres-ecommerce
+    image: postgres:15.3-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=ecommerce-user
+      - POSTGRES_PASSWORD=ecommerce-password
+      - POSTGRES_DB=ecommerce
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
