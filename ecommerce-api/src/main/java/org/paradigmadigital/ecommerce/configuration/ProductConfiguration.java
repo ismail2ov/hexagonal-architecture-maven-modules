@@ -1,6 +1,7 @@
 package org.paradigmadigital.ecommerce.configuration;
 
 import org.paradigmadigital.ecommerce.application.ProductService;
+import org.paradigmadigital.ecommerce.domain.product.ProductRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class ProductConfiguration {
 
   @Bean
-  public ProductService productService() {
-    return new ProductService();
+  public ProductService productService(ProductRepository productRepository) {
+    return new ProductService(productRepository);
   }
 }
