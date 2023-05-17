@@ -3,10 +3,13 @@ package org.paradigmadigital.ecommerce.controller.product;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.paradigmadigital.ecommerce.application.ProductService;
+import org.paradigmadigital.ecommerce.domain.product.ProductNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,7 +27,10 @@ public class ProductController {
 
   @GetMapping("/{id}")
   public ProductPageDto getById(@PathVariable("id") Long id) {
-    return mapper.map(productService.getProductBy(id));
+    try {
+      return mapper.map(productService.getProductBy(id));
+    } catch (ProductNotFoundException e) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
   }
-
 }

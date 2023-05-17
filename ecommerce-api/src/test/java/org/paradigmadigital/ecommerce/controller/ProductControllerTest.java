@@ -1,16 +1,20 @@
 package org.paradigmadigital.ecommerce.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.paradigmadigital.ecommerce.application.ProductService;
 import org.paradigmadigital.ecommerce.controller.product.ProductController;
 import org.paradigmadigital.ecommerce.controller.product.ProductDtoMapperImpl;
 import org.paradigmadigital.ecommerce.domain.product.Product;
+import org.paradigmadigital.ecommerce.domain.product.ProductNotFoundException;
 import org.paradigmadigital.ecommerce.domain.product.ProductPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -62,5 +66,14 @@ public class ProductControllerTest {
         .andExpect(jsonPath("$.product.name").value("Dell Latitude 3301 Intel Core i7-8565U/8GB/512GB SSD/13.3"))
         .andExpect(jsonPath("$.product.price").value("999,00 €"))
         .andExpect(jsonPath("$.cross_selling.size()").value(2));
+  }
+
+  @Test
+  void return_not_found_when_product_does_not_exists() throws Exception {
+    when(productService.getProductBy(111L)).thenThrow(new ProductNotFoundException());
+
+    this.mockMvc
+        .perform(get("/api/products/111"))
+        .andExpect(status().isNotFound());
   }
 }
