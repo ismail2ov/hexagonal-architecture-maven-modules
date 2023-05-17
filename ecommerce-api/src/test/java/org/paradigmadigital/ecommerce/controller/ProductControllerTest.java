@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.paradigmadigital.ecommerce.application.ProductService;
 import org.paradigmadigital.ecommerce.domain.Product;
+import org.paradigmadigital.ecommerce.domain.ProductPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -43,4 +44,21 @@ public class ProductControllerTest {
         .andExpect(jsonPath("$[1].price").value("41,34 €"));
   }
 
+  @Test
+  void return_product_by_id_and_cross_sell_products() throws Exception {
+    Product product1 = new Product(1L, "Dell Latitude 3301 Intel Core i7-8565U/8GB/512GB SSD/13.3", "999,00 €");
+    Product product2 = new Product(2L, "Samsonite Airglow Laptop Sleeve 13.3", "41,34 €");
+    Product product3 = new Product(3L, "Logitech Wireless Mouse M185", "10,78 €");
+
+    ProductPage productPageDto = new ProductPage(product1, List.of(product2, product3));
+    when(productService.getProductBy(1L)).thenReturn(productPageDto);
+
+    this.mockMvc
+        .perform(get("/api/products/1"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.product.id").value(1))
+        .andExpect(jsonPath("$.product.name").value("Dell Latitude 3301 Intel Core i7-8565U/8GB/512GB SSD/13.3"))
+        .andExpect(jsonPath("$.product.price").value("999,00 €"))
+        .andExpect(jsonPath("$.cross_selling.size()").value(2));
+  }
 }
