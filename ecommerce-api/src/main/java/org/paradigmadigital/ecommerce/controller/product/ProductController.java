@@ -1,4 +1,4 @@
-package org.paradigmadigital.ecommerce.controller;
+package org.paradigmadigital.ecommerce.controller.product;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;

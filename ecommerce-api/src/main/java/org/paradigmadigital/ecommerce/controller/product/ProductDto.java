@@ -1,4 +1,4 @@
-package org.paradigmadigital.ecommerce.controller;
+package org.paradigmadigital.ecommerce.controller.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

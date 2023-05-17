@@ -1,4 +1,4 @@
-package org.paradigmadigital.ecommerce.domain;
+package org.paradigmadigital.ecommerce.domain.product;
 
 import java.util.List;
 import lombok.Value;

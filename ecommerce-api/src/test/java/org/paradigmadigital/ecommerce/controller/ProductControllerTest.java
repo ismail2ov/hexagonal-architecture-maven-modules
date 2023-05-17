@@ -8,8 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.paradigmadigital.ecommerce.application.ProductService;
-import org.paradigmadigital.ecommerce.domain.Product;
-import org.paradigmadigital.ecommerce.domain.ProductPage;
+import org.paradigmadigital.ecommerce.controller.product.ProductController;
+import org.paradigmadigital.ecommerce.controller.product.ProductDtoMapperImpl;
+import org.paradigmadigital.ecommerce.domain.product.Product;
+import org.paradigmadigital.ecommerce.domain.product.ProductPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

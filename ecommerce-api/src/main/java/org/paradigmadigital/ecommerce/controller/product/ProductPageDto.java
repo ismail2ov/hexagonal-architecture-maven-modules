@@ -1,4 +1,4 @@
-package org.paradigmadigital.ecommerce.controller;
+package org.paradigmadigital.ecommerce.controller.product;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
