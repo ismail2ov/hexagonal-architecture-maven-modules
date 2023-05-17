@@ -30,4 +30,19 @@ public class ProductRepositoryImpl implements ProductRepository {
   public List<Product> getCrossSellProducts(long id) {
     return mapper.map(jpaRepository.getCrossSellProducts(id));
   }
+
+  @Override
+  public void deleteAll() {
+    jpaRepository.deleteAll();
+  }
+
+  @Override
+  public void save(Product product) {
+    jpaRepository.save(mapper.map(product));
+  }
+
+  @Override
+  public void addCrossSellProducts(long productId, long xsellId) {
+    jpaRepository.addCrossSellProducts(productId, xsellId);
+  }
 }

@@ -10,4 +10,10 @@ public interface ProductRepository {
   Optional<Product> findById(long id);
 
   List<Product> getCrossSellProducts(long id);
+
+  void deleteAll();
+
+  void save(Product product);
+
+  void addCrossSellProducts(long productId, long xsellId);
 }

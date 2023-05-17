@@ -10,4 +10,6 @@ public interface ProductEntityMapper {
   List<Product> map(List<ProductEntity> products);
 
   Product from(ProductEntity productEntity);
+
+  ProductEntity map(Product product);
 }
